@@ -1,6 +1,6 @@
 {
   "name": "node-red-template-embedded",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A template project for Node-Red in embedded mode allowing multiple instances",
   "private": true,
   "readme": "README.md",

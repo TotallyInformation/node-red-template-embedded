@@ -2,6 +2,8 @@
 A template project for running Node-Red in "embedded" mode which is great if you want to run multiple instances of Node-Red or work collaboratively with others.
 
 # Release Notes
+v0.0.2 Update readme - Added comment to configuration section of readme to inform that node-red-contrib-ui is installed. Initial testing also completed. Works on Windows 10 64bit with node.js v4.4.3 and Node-red v0.13.4. UI and http-in/out also tested.
+
 v0.0.1 INITIAL RELEASE - I've not yet fully tested this. Please use with caution. Let me know of any issues.
 
 # Basic Installation
@@ -54,6 +56,7 @@ This template project is pre-configured with the following default configuration
 - Default uri of `/`
 - Default admin uri of `/admin`
 - Verbose output on, logging level `info`
+- node-red-contrib-ui is installed as standard
 - Some other odds and ends either set to defaults or commented out for later use.
 
 The default configuration should work on all platforms including Windows.
