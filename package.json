@@ -1,0 +1,34 @@
+{
+  "name": "node-red-template-embedded",
+  "version": "0.0.1",
+  "description": "A template project for Node-Red in embedded mode allowing multiple instances",
+  "private": true,
+  "readme": "README.md",
+  "keywords": ["node-red"],
+  "contributors": [{"name": "Julian Knight", "url": "https://it.knightnet.org.uk"}],
+  "repository": "TotallyInformation/node-red-template-embedded",
+  "author": {"name": "Julian Knight (TotallyInformation)", "url": "https://www.totallyinformation.com"},
+  "homepage": "https://github.com/TotallyInformation/node-red-template-embedded",
+  "license": "MIT",
+  "bugs": "https://github.com/TotallyInformation/node-red-template-embedded/issues",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "restart": "sudo systemctl restart nr-live2",
+    "logs": "sudo journalctl -u nr-live2 -e -f -n 25",
+    "admin": "node-red-admin ",
+    "patch": "npm version patch -m \"Bumped to %s\" ",
+    "minor": "npm version minor",
+    "major": "npm version major"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "dependencies": {
+    "express": "4.*",
+    "node-red": "*",
+    "node-red-contrib-ui": "*"
+  },
+  "engines": {
+    "node": ">4"
+  }
+}

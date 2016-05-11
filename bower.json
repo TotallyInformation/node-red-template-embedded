@@ -1,0 +1,24 @@
+{
+  "name": "nr-live",
+  "description": "Live Node-Red",
+  "main": "server.js",
+  "authors": [
+    "Julian Knight"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mqttws": "~1.0.0"
+  }
+}
