@@ -17,6 +17,7 @@ npm install
 # Start the server (runs 'node server.js')
 npm start
 ```
+If you are not using git, you can instead [download the zip file](https://github.com/TotallyInformation/node-red-template-embedded/archive/master.zip) from GitHub and unpack to a convenient location.
 
 # Running Multiple Instances of Node-Red
 One of the key points of this project template is to be able to run multiple instances of Node-Red, even at different version levels. Great for testing new versions and proving they work before destroying your current version!
