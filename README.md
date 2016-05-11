@@ -1,7 +1,9 @@
 # node-red-template-embedded
-A template project for running Node-Red in "embedded" mode which is great if you want to run multiple instances of Node-Red or work collaboratively with others.
+A template project for running Node-Red in "embedded" mode which is great if you want to run multiple instances of Node-Red or work collaboratively with others. Also lets you take control of the ExpressJS server.
 
 # Release Notes
+v0.0.3 Update readme - Added alternative approaches and a warning about version constraints
+
 v0.0.2 Update readme - Added comment to configuration section of readme to inform that node-red-contrib-ui is installed. Initial testing also completed. Works on Windows 10 64bit with node.js v4.4.3 and Node-red v0.13.4. UI and http-in/out also tested.
 
 v0.0.1 INITIAL RELEASE - I've not yet fully tested this. Please use with caution. Let me know of any issues.
@@ -57,6 +59,7 @@ This template project is pre-configured with the following default configuration
 - Default admin uri of `/admin`
 - Verbose output on, logging level `info`
 - node-red-contrib-ui is installed as standard
+- I've *not* put any version constraints on either Node-Red or UI in `package.json`, you might want to add some to prevent future upgrade issues on a live installation
 - Some other odds and ends either set to defaults or commented out for later use.
 
 The default configuration should work on all platforms including Windows.
@@ -96,3 +99,25 @@ As time goes by, these problems can multiply too as you find yourself installing
 Finally, although the default installation method for Node-Red seems initially simpler, I've noted that a lot of time is taken up in the support forum with people losing track of installed files or ending up with duplicate files or incorrect permissions. All of this is avoided by taking control of the installation.
 
 Hopefully this template will make it a lot easier for people to follow this method.
+
+# Alternative approaches
+Nathanaël Lécaudé has an interesting approach that uses sub-processes, see his GitHub repo at [natcl/node-red-project-template](https://github.com/natcl/node-red-project-template)
+
+Nick O'Leary, one of the main IBM developers working on Node-Red also suggests creating a project folder with a simpler installation using the following `package.json`:
+```json
+{
+    "name"         : "my-node-red-project",
+    "version"      : "0.0.1",
+    "dependencies": {
+        "node-red": "~0.13.4",
+    },
+    "scripts": {
+      "start": "node node_modules/node-red/red.js --userDir ./data"
+    },
+}
+```
+Most of the benefits are the same other than not having as much control over the Express server.
+
+# To do
+- Add template code for running under HTTPS instead of HTTP
+- Add optional code to include extended security using Passport
