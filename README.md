@@ -2,6 +2,8 @@
 A template project for running Node-Red in "embedded" mode which is great if you want to run multiple instances of Node-Red or work collaboratively with others. Also lets you take control of the ExpressJS server.
 
 # Release Notes
+v0.0.4 Update readme - Added reference to SelfSigned-Cert-Creator for HTTPS
+
 v0.0.3 Update readme - Added alternative approaches and a warning about version constraints
 
 v0.0.2 Update readme - Added comment to configuration section of readme to inform that node-red-contrib-ui is installed. Initial testing also completed. Works on Windows 10 64bit with node.js v4.4.3 and Node-red v0.13.4. UI and http-in/out also tested.
@@ -120,4 +122,7 @@ Most of the benefits are the same other than not having as much control over the
 
 # To do
 - Add template code for running under HTTPS instead of HTTP
+  Although this code has not been updated, I do have a shell script and some instructions
+  for generating valid self-signed certificates in another repo: 
+  [SelfSigned-Cert-Creator](https://github.com/TotallyInformation/SelfSigned-Cert-Creator)
 - Add optional code to include extended security using Passport
