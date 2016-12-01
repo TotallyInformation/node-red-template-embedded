@@ -122,7 +122,9 @@ Most of the benefits are the same other than not having as much control over the
 
 # To do
 - Add template code for running under HTTPS instead of HTTP
+
   Although this code has not been updated, I do have a shell script and some instructions
   for generating valid self-signed certificates in another repo: 
   [SelfSigned-Cert-Creator](https://github.com/TotallyInformation/SelfSigned-Cert-Creator)
+  
 - Add optional code to include extended security using Passport
