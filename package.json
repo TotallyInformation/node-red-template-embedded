@@ -1,32 +1,44 @@
 {
   "name": "node-red-template-embedded",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A template project for Node-Red in embedded mode allowing multiple instances",
   "private": true,
   "readme": "README.md",
   "keywords": ["node-red"],
-  "contributors": [{"name": "Julian Knight", "url": "https://it.knightnet.org.uk"}],
+  "contributors": [{"name": "Julian Knight", "url": "https://it.knightnet.org.uk"}, "sebastian.barwe@gmail.com"],
   "repository": "TotallyInformation/node-red-template-embedded",
   "author": {"name": "Julian Knight (TotallyInformation)", "url": "https://www.totallyinformation.com"},
   "homepage": "https://github.com/TotallyInformation/node-red-template-embedded",
   "license": "MIT",
   "bugs": "https://github.com/TotallyInformation/node-red-template-embedded/issues",
   "main": "server.js",
+  "config" : { 
+    "http_port" : "1880", 
+    "use_https" : "false",
+    "listening_address" : "localhost",
+    "nr_userfolder" : "./.nodered",
+    "nr_flowfile" : "./flows.json",
+    "nr_credentialsecret" : null,
+    "nr_title" : "Node RED Embedded"
+  },
   "scripts": {
     "start": "node server.js",
-    "restart": "sudo systemctl restart nr-live2",
-    "logs": "sudo journalctl -u nr-live2 -e -f -n 25",
-    "admin": "node-red-admin ",
-    "patch": "npm version patch -m \"Bumped to %s\" ",
-    "minor": "npm version minor",
-    "major": "npm version major"
+    "debug" : "cross-env NODE_ENV=development node --debug server.js",
+    "admin": "node-red-admin",
+    "adminauth" : "node -e \"console.log(require('bcryptjs').hashSync(process.argv[1], 8));\"",
+    "selfsigned" : "node -e \"var pems = require('selfsigned').generate([{ name: 'commonName', value: process.argv[1] }], { days: 365 }); var fs = require('fs'); fs.writeFileSync('server.key', pems.private); fs.writeFileSync('server.crt', pems.cert); console.log('Updated server.key|crt for CN', process.argv[1]);\""
   },
-  "devDependencies": {},
-  "optionalDependencies": {},
+  "devDependencies": {
+
+  },
+  "optionalDependencies": {
+    "cross-env" : "4.*",
+    "selfsigned" : "1.8.*",
+    "bcryptjs": "^2.4.0"
+  },
   "dependencies": {
     "express": "4.*",
-    "node-red": "*",
-    "node-red-contrib-ui": "*"
+    "node-red": ">=0.16.*"
   },
   "engines": {
     "node": ">=4.0.0"
