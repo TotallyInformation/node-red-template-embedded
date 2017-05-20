@@ -2,6 +2,10 @@
 A template project for running Node-Red in "embedded" mode which is great if you want to run multiple instances of Node-Red or work collaboratively with others. Also lets you take control of the ExpressJS server.
 
 # Release Notes
+
+## v0.0.6
+* added custom loggers for file output, syslog and a colorful console
+
 ## v0.0.5 
 * Updated README
 * Removed references to node-red-contrib-ui
@@ -60,6 +64,64 @@ This template project is pre-configured with the following default configuration
 
 The default configuration should work on all platforms including Windows.
 
+## Logger
+You can enable the following custom loggers in the `settings.js` file under key `logging`.
+
+### Colorful console output
+
+Enabling this logger gives colorful output on the console (red on error, yellow on warning) using the package [paint-console](https://www.npmjs.com/package/paint-console):
+
+![demo output ](http://i.imgur.com/Bj7RAxf.png)
+
+```js
+     consolecolor: {
+      level: "debug",
+      metrics: false,
+      audit: false,
+      handler: require("./logger_con.js")
+    },
+```
+
+### File Logger
+
+This is a simple file logger using `appendFileSync`. You should use it in combination with logrotate or similar.
+You can set the newline characters and divider between timestamp and message for needs.
+The logile is stored in the current working directory with the filename `nr.log`.
+
+```js
+    file: {
+      level: "info",
+      metrics: false,
+      audit: false,
+      logfilename: path.join(process.cwd(), "nr.log"), // the default logfile
+      divider: "\t", // col divider
+      newline: "\n", // newline characters typically \r\n (CRLF) or \n (LF)
+      handler: require("./logger_file.js")
+    },
+```
+
+### Syslog logger
+
+Sends log messages to your syslog server via package [syslog-client](https://www.npmjs.com/package/syslog-client).
+You provide connection string to address the syslog server in the form of `[tcp|udp]://host[:port]/program`, e.g.
+`udp://localhost` will send to the local syslog server via UDP on default port 514 with the programname NR.
+`tcp://nas:1000/NRInstance10` will send to a syslog server on a network attached storage on tcp-port 1000 with the program name NRInstance0.
+
+![demo output ](http://i.imgur.com/ckqzQrj.png)
+
+```js
+    syslog: {
+      level: "info",
+      // hostname : "myhostname", // if not set will be os.hostname()
+      syslogserver: "udp://nas:514/NR", // syslog server [tcp|udp]://host[:port]/program
+      rfc3164: true, //set to false to use RFC 5424 syslog header format; default is true for the older RFC 3164 format.
+      facility: "Local0", //  Kernel, User, System, Audit, Alert, Local0 - Local7
+      handler: require("./logger_syslog.js")
+    }
+```
+
+*Note: Audit and metrics are not supported with this logger.*
+
 ## package.json
 
 These are the default settings in package.json.
@@ -101,7 +163,7 @@ These are the default settings in package.json.
 The settings in `package.json` can be overridden on commandline, e.g. 
 
 ```ps
-npm run debug --node-red-template-embedded:http_port=1882 
+npm run debug --node-red-template-embedded:http_port=1882 --node-red-template-embedded:use_https=true 
 ```
 
 see [npm-config](https://docs.npmjs.com/misc/config) for more information on dealing with npm settings.
@@ -136,6 +198,11 @@ You can generate passwords for your users with `npm run adminauth -- your-passwo
 For further information see http://nodered.org/docs/security.html#generating-the-password-hash
 
 *Note: Do not forget to restrict the default permissions !*
+
+# Securing http-in endpoints
+
+A great tutorial how to enable JSONWebTokens (JWT) is found here https://www.compose.com/articles/authenticating-node-red-with-jsonwebtoken/
+
 
 # Allow access from other networks than localhost
 
@@ -190,7 +257,7 @@ creates self-signed certificates for running https-Server. You need to provide t
 This is a list of common nodes usually installed afterwards:
 
 ```bash
-npm install --save node-red-dashboard node-red-node-swagger
+npm install --save node-red-dashboard node-red-node-swagger node-red-contrib-auth node-red-contrib-httpauth
 ```
 NOTE: 
 
