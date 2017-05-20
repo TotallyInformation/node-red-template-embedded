@@ -5,6 +5,10 @@ A template project for running Node-Red in "embedded" mode which is great if you
 
 ## v0.0.6
 * added custom loggers for file output, syslog and a colorful console
+* added public html folder
+* added local nodes directory with sample node (not active), but speed ups node development if necessary
+* moved source to ./src directory
+
 
 ## v0.0.5 
 * Updated README
@@ -54,7 +58,7 @@ This template project is pre-configured with the following default configuration
 - the default http or https port is 1881
 - http is activated by default, not https
 - User folder set to `./.nodered`
-- Flows file of `./.nodered/flows.json` (with the file set to "pretty" to make git diffs easier to work with)
+- Flows file of `./flows.json` (with the file set to "pretty" to make git diffs easier to work with)
 - Static web folder set to `./public` (take care not to end up with a name clash between files/folders in public and http-in nodes)
 - Default URI of `/`
 - Default admin URI of `/admin`
@@ -78,7 +82,7 @@ Enabling this logger gives colorful output on the console (red on error, yellow 
       level: "debug",
       metrics: false,
       audit: false,
-      handler: require("./logger_con.js")
+      handler: require("./src/logger_con.js")
     },
 ```
 
@@ -96,7 +100,7 @@ The logile is stored in the current working directory with the filename `nr.log`
       logfilename: path.join(process.cwd(), "nr.log"), // the default logfile
       divider: "\t", // col divider
       newline: "\n", // newline characters typically \r\n (CRLF) or \n (LF)
-      handler: require("./logger_file.js")
+      handler: require("./src/logger_file.js")
     },
 ```
 
@@ -116,7 +120,7 @@ You provide connection string to address the syslog server in the form of `[tcp|
       syslogserver: "udp://nas:514/NR", // syslog server [tcp|udp]://host[:port]/program
       rfc3164: true, //set to false to use RFC 5424 syslog header format; default is true for the older RFC 3164 format.
       facility: "Local0", //  Kernel, User, System, Audit, Alert, Local0 - Local7
-      handler: require("./logger_syslog.js")
+      handler: require("./src/logger_syslog.js")
     }
 ```
 

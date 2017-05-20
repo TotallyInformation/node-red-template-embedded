@@ -33,8 +33,9 @@
     "nr_title": "Node RED Embedded"
   },
   "scripts": {
-    "start": "node server.js",
-    "debug": "cross-env NODE_ENV=development node --debug server.js",
+    "start": "node src/server.js",
+    "ssl": "npm start --node-red-template-embedded:http_port=1882 --node-red-template-embedded:use_https=true",
+    "debug": "cross-env NODE_ENV=development node --debug src/server.js",
     "admin": "node-red-admin",
     "adminauth": "node -e \"console.log(require('bcryptjs').hashSync(process.argv[1], 8));\"",
     "selfsigned": "node -e \"var pems = require('selfsigned').generate([{ name: 'commonName', value: process.argv[1] }], { days: 365 }); var fs = require('fs'); fs.writeFileSync('server.key', pems.private); fs.writeFileSync('server.crt', pems.cert); console.log('Updated server.key|crt for CN', process.argv[1]);\""
