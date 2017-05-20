@@ -145,7 +145,7 @@ module.exports = {
       metrics: false,
       audit: false,
       handler: require("./logger_con.js")
-    },
+    }
     /*
     // file logger
     file: {
