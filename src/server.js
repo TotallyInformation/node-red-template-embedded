@@ -1,8 +1,7 @@
-/*eslint-env node */
-/*eslint indent:0,semi:0 */
-/*jshint devel: true, node: true*/
-/* eslint no-console: 0 */
-/*global: */
+/* eslint-env node */
+/* eslint indent:0,semi:0, no-console: 0 */
+/* jshint devel: true, node: true*/
+/* global: */
 
 /***
  * Start an instance of Node-Red under Express.JS
@@ -11,6 +10,10 @@
  ***/
 
 "use strict" /* always for Node.JS, never global in the browser */;
+
+// logging ************
+// you should consider using the packages debug and console-stamp to
+// incorporate standard logging with node-red logging
 
 // The TCP port for this systems web interface - picked up from env, package.json or fixed value
 const http_port =
