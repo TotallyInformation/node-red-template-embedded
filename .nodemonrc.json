@@ -13,7 +13,7 @@
   "watch": [
     "src/",
     "nodes/",
-    "node_modules/**/node-red-*"
+    "node_modules/node-red-*"
   ],
   "ext": "js json htm html css"
 }
