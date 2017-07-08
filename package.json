@@ -5,7 +5,9 @@
   "private": true,
   "readme": "README.md",
   "keywords": [
-    "node-red"
+    "node-red",
+    "embedded",
+    "express"
   ],
   "contributors": [
     {
@@ -14,14 +16,14 @@
     },
     "sebastian.barwe@gmail.com"
   ],
-  "repository": "TotallyInformation/node-red-template-embedded",
+  "repository": "sbarwe/node-red-template-embedded",
   "author": {
     "name": "Julian Knight (TotallyInformation)",
     "url": "https://www.totallyinformation.com"
   },
-  "homepage": "https://github.com/TotallyInformation/node-red-template-embedded",
+  "homepage": "https://github.com/sbarwe/node-red-template-embedded",
   "license": "MIT",
-  "bugs": "https://github.com/TotallyInformation/node-red-template-embedded/issues",
+  "bugs": "https://github.com/sbarwe/node-red-template-embedded/issues",
   "main": "server.js",
   "config": {
     "http_port": "1880",
@@ -35,7 +37,7 @@
   "scripts": {
     "start": "node src/server.js",
     "ssl": "npm start --node-red-template-embedded:http_port=1882 --node-red-template-embedded:use_https=true",
-    "debug": "cross-env NODE_ENV=development \"nodemon --config .nodemonrc.json --verbose --watch ./src --watch ./node_modules --watch ./nodes --ignore *.log --ext js,html --debug src/server.js\"",
+    "debug": "cross-env NODE_ENV=development \"nodemon --config .nodemonrc.json --debug src/server.js\"",
     "admin": "node-red-admin",
     "adminauth": "node -e \"console.log(require('bcryptjs').hashSync(process.argv[1], 8));\"",
     "selfsigned": "node -e \"var pems = require('selfsigned').generate([{ name: 'commonName', value: process.argv[1] }], { days: 365 }); var fs = require('fs'); fs.writeFileSync('server.key', pems.private); fs.writeFileSync('server.crt', pems.cert); console.log('Updated server.key|crt for CN', process.argv[1]);\""
