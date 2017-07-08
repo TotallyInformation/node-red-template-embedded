@@ -1,6 +1,6 @@
 {
   "name": "node-red-template-embedded",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A template project for Node-Red in embedded mode allowing multiple instances",
   "private": true,
   "readme": "README.md",
@@ -35,12 +35,14 @@
   "scripts": {
     "start": "node src/server.js",
     "ssl": "npm start --node-red-template-embedded:http_port=1882 --node-red-template-embedded:use_https=true",
-    "debug": "cross-env NODE_ENV=development node --debug src/server.js",
+    "debug": "cross-env NODE_ENV=development \"nodemon --config .nodemonrc.json --verbose --watch ./src --watch ./node_modules --watch ./nodes --ignore *.log --ext js,html --debug src/server.js\"",
     "admin": "node-red-admin",
     "adminauth": "node -e \"console.log(require('bcryptjs').hashSync(process.argv[1], 8));\"",
     "selfsigned": "node -e \"var pems = require('selfsigned').generate([{ name: 'commonName', value: process.argv[1] }], { days: 365 }); var fs = require('fs'); fs.writeFileSync('server.key', pems.private); fs.writeFileSync('server.crt', pems.cert); console.log('Updated server.key|crt for CN', process.argv[1]);\""
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon":"^1.11.0"
+  },
   "optionalDependencies": {
     "cross-env": "4.*",
     "selfsigned": "1.8.*",
@@ -48,9 +50,10 @@
   },
   "dependencies": {
     "express": "4.*",
-    "node-red": ">=0.17.0",
+    "node-red": ">=0.17.3",
     "paint-console": "0.0.1",
-    "syslog-client": "^1.1.0"
+    "syslog-client": "^1.1.0",
+    "node-red-contrib-contextbrowser" :">=0.0.4"
   },
   "engines": {
     "node": ">=4.0.0"

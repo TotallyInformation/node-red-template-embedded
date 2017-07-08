@@ -3,6 +3,11 @@ A template project for running Node-Red in "embedded" mode which is great if you
 
 # Release Notes
 
+## v0.0.7
+* Node-RED 0.17, node-red-contrib-contextbrowser
+* added nodemon to restart instance automatically on change of nodes when executing `npm run debug`. Node_modules is included in the path watch, but only extensions *.html and *.js. You can change this
+in file `.nodemonrc.json`.
+
 ## v0.0.6
 * added custom loggers for file output, syslog and a colorful console
 * added public html folder

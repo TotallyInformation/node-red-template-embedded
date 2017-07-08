@@ -100,4 +100,7 @@ httpServer.listen(http_port, listening_address, function() {
 });
 
 // Start the runtime
-RED.start();
+RED.start().then(function() {
+  console.info("------ Engine started! ------");
+});
+
