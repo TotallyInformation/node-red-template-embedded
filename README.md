@@ -1,6 +1,8 @@
 # node-red-template-embedded
 A template project for running Node-Red in "embedded" mode which is great if you want to run multiple instances of Node-Red or work collaboratively with others. Also lets you take control of the ExpressJS server.
 
+There is tutorial on medium how to setup a development environment with this project [here](https://medium.com/@sebastian.barwe/setup-a-own-node-red-dev-environment-in-5-min-78b21f995e19)
+
 # Release Notes
 
 ## v0.0.7
@@ -43,7 +45,7 @@ in file `.nodemonrc.json`.
 # Create a project folder and change into it
 mkdir myproject && cd myproject
 # Clone this repository into the project folder
-git clone https://github.com/TotallyInformation/node-red-template-embedded.git .
+git clone https://github.com/sbarwe/node-red-template-embedded.git .
 # Install the pre-requisite modules (Express, Node-Red)
 npm install
 # Install some additional nodes if required ...
@@ -51,7 +53,7 @@ npm install
 # Start the server (runs 'node server.js')
 npm start
 ```
-If you are not using git, you can instead [download the zip file](https://github.com/TotallyInformation/node-red-template-embedded/archive/master.zip) from GitHub and unpack to a convenient location.
+If you are not using git, you can instead [download the zip file](https://github.com/sbarwe/node-red-template-embedded/archive/master.zip) from GitHub and unpack to a convenient location.
 
 # Configuration
 
