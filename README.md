@@ -1,3 +1,7 @@
+**NOTE**: This repo is no longer maintained since things have moved on with Node-RED and there is better information now available. I will leave this up as a reference but I am closing it off, no futher updates will happen and no further issues can be raised.
+
+----
+
 # node-red-template-embedded
 A template project for running Node-Red in "embedded" mode which is great if you want to run multiple instances of Node-Red or work collaboratively with others. Also lets you take control of the ExpressJS server.
 
