@@ -1,7 +1,7 @@
-/*eslint-env node */
-/*eslint indent:0,semi:0 */
-/*jshint devel: true, node: true*/
-/*global: */
+/* eslint-env node */
+/* eslint indent:0,semi:0, no-console: 0 */
+/* jshint devel: true, node: true*/
+/* global: */
 
 /***
  * Start an instance of Node-Red under Express.JS
@@ -10,6 +10,10 @@
  ***/
 
 "use strict" /* always for Node.JS, never global in the browser */;
+
+// logging ************
+// you should consider using the packages debug and console-stamp to
+// incorporate standard logging with node-red logging
 
 // The TCP port for this systems web interface - picked up from env, package.json or fixed value
 const http_port =
@@ -27,7 +31,7 @@ const http = use_https ? require("https") : require("http");
 
 const express = require("express"); // THE std library for serving HTTP
 const RED = require("node-red");
-var nrSettings = require("./settings.js"); // Node-Red settings file
+var nrSettings = require("../settings.js"); // Node-Red settings file
 const fs = require("fs");
 
 // you can set a default credential secret for storing node's credentials within node red
@@ -57,15 +61,15 @@ if (process.env.npm_package_config_nr_title) {
 var app = express();
 
 // Add a simple route for static content served from './public'
-app.use("/", express.static("public"));
+app.use("/", express.static("./public"));
 
 // Add static route for bower components from './bower_components'
-app.use("/bower_components", express.static("bower_components"));
+app.use("/bower_components", express.static("./bower_components"));
 
 // Create the http(s) server
 if (use_https) {
-  var privateKey = fs.readFileSync("server.key", "utf8");
-  var certificate = fs.readFileSync("server.crt", "utf8");
+  var privateKey = fs.readFileSync("./server.key", "utf8");
+  var certificate = fs.readFileSync("./server.crt", "utf8");
   var credentials = {
     key: privateKey,
     cert: certificate
@@ -96,4 +100,7 @@ httpServer.listen(http_port, listening_address, function() {
 });
 
 // Start the runtime
-RED.start();
+RED.start().then(function() {
+  console.info("------ Engine started! ------");
+});
+

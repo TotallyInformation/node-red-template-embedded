@@ -122,7 +122,7 @@ module.exports = {
 
   // Configure the logging output
   logging: {
-    // Only console logging is currently supported
+    /*
     console: {
       // Level of logging to be recorded. Options are:
       // fatal - only those errors which make the application unusable should be recorded
@@ -136,7 +136,40 @@ module.exports = {
       metrics: false,
       // Whether or not to include audit events in the log output
       audit: false
+    },
+    */
+
+    // colorized console
+    consolecolor: {
+      level: "debug",
+      metrics: false,
+      audit: false,
+      handler: require("./src/logger_con.js")
+    },
+    
+    // file logger
+    file: {
+      level: "info",
+      metrics: false,
+      audit: false,
+      logfilename: path.join(process.cwd(), "nr.log"), // the default logfile
+      divider: "\t", // col divider
+      newline: "\n", // newline characters typically \r\n (CRLF) or \n (LF)
+      handler: require("./src/logger_file.js")
+    },
+ 
+    /*
+    // syslog
+    syslog: {
+      level: "info",
+      metrics: false,
+      audit: false,
+      syslogserver: "udp://nas:514/NR", // syslog server [tcp|udp]://host[:port]/program
+      rfc3164: true, //set to false to use RFC 5424 syslog header format; default is true for the older RFC 3164 format.
+      facility: "Local0", //  Kernel, User, System, Audit, Alert, Local0 - Local7
+      handler: require("./src/logger_syslog.js")
     }
+    */
   },
 
   /* Add a custom middleware function for Express in front of all http in nodes.
